@@ -65,7 +65,7 @@ Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasisw
 | ![My Image](Screenshoot/hasil-2.png) | ![My Image](Screenshoot/hasil-3.png) |
 
 ### Halaman Dashboard
-| Dashboard 1 | Laporan diagnosa (All) |
+| Dashboard 1 | Data Aturan/Rule |
 | -------------- | -------------- |
 | ![My Image](Screenshoot/dashboard-1.png) | ![My Image](Screenshoot/aturan.png) |
 | Laporan Diagnosa All | Laporan Diagnosa Individu |
@@ -77,6 +77,25 @@ Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasisw
 - [Composer](https://getcomposer.org/)
 - [XAMPP](https://www.apachefriends.org/download.html) atau sejenisnya dengan versi php 7.4++ dengan mengaktifkan ``intl`` pada ``xampp\config\php.ini`` hapus tanda `` ; ``
 
+### Instalasi Project
+- Unduh dan import project ini ke dalam direktori proyek anda (htdocs).
+- konfigurasi file ``env example`` menjadi ``.env`` lalu ubah nama database, username dan password (jika ada)
+- Ubah url yang terletak pada ``app/config/App.php`` lalu ubah bagian ``public string $baseURL`` sesuai dengan alamat project anda.
+- Penting!! Install dependencies yang diperlukan dengan cara menjalankan perintah berikut di terminal:
+```code
+composer install
+```
+- buat database pada phpmyadmin anda ``http://localhost:phpmyadmin`` , sesuaikan nama db tersebut dengan nama db yang tertera pada ``.env``
+- Jalankan migration database pada terminal anda:
+```code
+php spark migrate --all
+```
+- Jika anda ingin menggunakan data rujukan diagnosis dari sistem ini, silahkan pakai seeder yang tersedia:
+```code
+> php spark db:seed --all
+```
+- Jika sudah silahkan buka web serve dengan alamat url yang sudah anda tentukan sebelumnya.
+- Data login admin dapat dilihat di ``app/Database/Seeds/AdminSeeder``
 
 
 

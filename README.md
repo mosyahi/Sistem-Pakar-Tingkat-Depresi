@@ -9,7 +9,7 @@ Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasisw
 - [Codeigniter 4](https://codeigniter.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
 - [Template Dashboard by SB-Admin](https://startbootstrap.com/theme/sb-admin-2)
-- [Template Landing by SB-Admin](https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/)
+- [Template Landing by Arsha](https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/)
 - PHPMailer
 - Google Client
 - DOMPdf

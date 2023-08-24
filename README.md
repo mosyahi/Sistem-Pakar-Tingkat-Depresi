@@ -102,7 +102,7 @@ php spark migrate --all
 ```
 - Jika anda ingin menggunakan data rujukan diagnosis dari sistem ini, silahkan pakai seeder yang tersedia:
 ```code
-> php spark db:seed --all
+php spark db:seed --all
 ```
 - Jika sudah silahkan buka web serve dengan alamat url yang sudah anda tentukan sebelumnya.
 - Data login admin dapat dilihat di ``app/Database/Seeds/AdminSeeder``

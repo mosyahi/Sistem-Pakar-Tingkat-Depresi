@@ -2,14 +2,22 @@
 
 ## Apa itu Sispasi UMC?
 
-Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode certainty factor [official site](https://mosyahi.wordpress.com).
+Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode certainty factor [Mosyahi-Dev](https://mosyahi.wordpress.com).
 
-## Server Requirements
+## Fitur 
+Halaman Utama
+- Landing Page
+- Halaman Tentang, Informasi, FAQ dan Kontak
+- Halaman Kritik Dan Saran (Pemberitahuan dan ucapan terima kasih Akan terkirim melalu Email)
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+Halaman Cek Diagnosa
+- Homepage Cek Diagnosa
+- Form Biodata
+- Form Pertanyaa Internal (Pribadi)
+- Form Gejala
+- Panduan pemakaian
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Halaman Hasil
 
 Additionally, make sure that the following extensions are enabled in your PHP:
 

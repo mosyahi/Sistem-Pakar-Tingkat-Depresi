@@ -8,6 +8,8 @@ Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasisw
 ## Framework dan Library yang digunakan
 - [Codeigniter 4](https://codeigniter.com/)
 - [Bootstrap 5](https://getbootstrap.com/)
+- [Template Dashboard by SB-Admin](https://startbootstrap.com/theme/sb-admin-2)
+- [Template Landing by SB-Admin](https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/)
 - PHPMailer
 - Google Client
 - DOMPdf
@@ -142,6 +144,18 @@ Jika anda ingin mengaktifkan *Send Email OTP - Kritik dan Saran Email - Token Lu
         $mail->setFrom('MASUKKAN EMAIL ANDA DISINI', 'Sispasi UMC');
         $mail->addAddress($email);
 ```
-- Jika anda ingin mengkonfigurasi *Kritik dan Saran Email* maka anda buka ``app/Config/Controllers/KritikController``, dan *Send Token Reset Password* buka ``app/Config/Controllers/ResetPasswordController``
+- Jika anda ingin mengkonfigurasi *Kritik dan Saran Email* maka anda buka ``app/Config/Controllers/KritikController``, dan *Send Token Reset Password* buka ``app/Config/Controllers/ResetPasswordController`` (ubah bagian seperti Send OTP Email).
+
+## Kesimpulan
+Dengan adanya aplikasi sistem pakar diagnosis tingkat depresi ini diharapkan dapat membantu penanganan yang tepat terhadap teman-teman mahasiswa yang sedang mengalami depresi.
+
+Jangan lupa star yaa.....
+
+## License
+Copyright © 2023 Mosyahi-Dev.
+
+## Authors
+[Mosyahi-Dev](https://instagram.com/mochsyarifhidayat13)
+
 
 

@@ -11,20 +11,16 @@ class KritikController extends BaseController
     {
         $request = $this->request;
 
-        // Mengumpulkan data dari formulir
         $name = $request->getPost("namaLengkap");
         $email = $request->getPost("email");
         $phone = $_POST["phone"];
         $judul = $request->getPost("judul");
         $message = $request->getPost("isi");
 
-        // Pengaturan penerima email
         $to = "ISI EMAIL PENERIMA"; 
 
-        // Subjek email
         $subject = "Sispasi UMC - Pesan dari $name";
 
-        // Isi pesan email dalam format HTML
         $emailMessage = '<html>';
         $emailMessage .= '<head>';
         $emailMessage .= '<style>';
@@ -53,7 +49,6 @@ class KritikController extends BaseController
         $emailMessage .= '</body>';
         $emailMessage .= '</html>';
 
-        // Mengirim email menggunakan phpmailer dengan format HTML
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -106,7 +101,7 @@ class KritikController extends BaseController
             $mailBalasan->SMTPSecure = 'tls';
             $mailBalasan->Port = 587;
 
-            // Coba kirim email balasan
+            // Kirim email balasan
             try {
                 $mailBalasan->setFrom('ISI EMAIL ANDA DISINI', 'Tim Sispasi UMC');
                 $mailBalasan->addAddress($email);
@@ -115,10 +110,10 @@ class KritikController extends BaseController
                 $mailBalasan->isHTML(true);
 
                 if ($mailBalasan->send()) {
-                // Pesan jika email balasan berhasil terkirim
+                    // Pesan jika email balasan berhasil terkirim
                     echo " Silahkan cek email anda.";
                 } else {
-                // Pesan jika email balasan gagal terkirim
+                    // Pesan jika email balasan gagal terkirim
                     echo " Email balasan gagal terkirim. " . $mailBalasan->ErrorInfo;
                 }
             } catch (Exception $e) {

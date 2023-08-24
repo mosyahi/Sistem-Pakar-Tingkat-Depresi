@@ -37,10 +37,8 @@ class MasterUserController extends BaseController
         $adminModel = new UserModel();
         $adminModel->truncate(); 
 
-        // Simpan pesan sukses ke dalam flash data
         session()->setFlashdata('success', 'Keseluruhan data admin berhasil dihapus.');
 
-        // Redirect ke halaman laporan
         return redirect()->back();
     }
 
@@ -49,10 +47,8 @@ class MasterUserController extends BaseController
         $mahasiswaModel = new MahasiswaModel();
         $mahasiswaModel->emptyTable(); 
 
-        // Simpan pesan sukses ke dalam flash data
         session()->setFlashdata('success', 'Keseluruhan data mahasiswa berhasil dihapus.');
 
-        // Redirect ke halaman laporan
         return redirect()->back();
     }
 

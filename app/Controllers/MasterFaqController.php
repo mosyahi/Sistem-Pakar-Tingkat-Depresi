@@ -57,11 +57,11 @@ class MasterFaqController extends BaseController
         // Hapus faq
         $model->delete($id_faq);
 
-    return redirect()->to('/admin/master_faq')->with('success', 'Data faq berhasil dihapus.');
-}
+        return redirect()->to('/admin/master_faq')->with('success', 'Data faq berhasil dihapus.');
+    }
 
 
-public function edit($id)
+    public function edit($id)
     {
         $model = new FaqModel();
         $data['faq'] = $model->find($id);
@@ -107,11 +107,8 @@ public function edit($id)
         return redirect()->to('admin/master_faq')->with('success', 'Data faq berhasil diupdate.');
     }
 
-
-    // Fungsi untuk memeriksa perubahan data
     private function isDataChanged($newData, $existingData)
     {
-        // Bandingkan nilai-nilai dari data baru dengan data yang ada sebelumnya
         return $newData['pertanyaan'] !== $existingData['pertanyaan'] ||
         $newData['jawaban'] !== $existingData['jawaban'];
     }

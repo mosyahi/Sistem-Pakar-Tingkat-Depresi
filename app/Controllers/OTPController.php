@@ -45,10 +45,8 @@ class OTPController extends BaseController
         $otpModel = new OtpModel();
         $otpModel->emptyTable(); 
 
-        // Simpan pesan sukses ke dalam flash data
         session()->setFlashdata('success', 'Keseluruhan data OTP berhasil dihapus.');
 
-        // Redirect ke halaman laporan
         return redirect()->back();
     }
 
@@ -57,10 +55,8 @@ class OTPController extends BaseController
         $tokenModel = new ResetPasswordModel();
         $tokenModel->emptyTable(); 
 
-        // Simpan pesan sukses ke dalam flash data
         session()->setFlashdata('success', 'Keseluruhan data token berhasil dihapus.');
 
-        // Redirect ke halaman laporan
         return redirect()->back();
     }
 

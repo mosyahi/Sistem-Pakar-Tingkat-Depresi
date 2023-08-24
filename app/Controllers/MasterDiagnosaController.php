@@ -49,13 +49,11 @@ class MasterDiagnosaController extends BaseController
 
         // Validasi jika listSelectedGejala atau listCF kosong
         if (empty($listSelectedGejala) || empty($listCF)) {
-        // Tampilkan pesan error atau lakukan tindakan sesuai kebutuhan
             return redirect()->to('mahasiswa/diagnosa/error');
         }
 
         $mergedData = array();
         foreach ($listSelectedGejala as $key => $idGejala) {
-            // Memeriksa apakah $listCF pada indeks $key tidak kosong
             if (isset($listCF[$key]) && !empty($listCF[$key])) {
                 $cfUserId = $listCF[$key];
 
@@ -67,15 +65,11 @@ class MasterDiagnosaController extends BaseController
                     'cf_user' => $cfKepercayaan['cf'],
                 ];
             } else {
-            // Tindakan yang akan diambil jika ListCF tidak dipilih untuk gejala yang dipilih
                 return redirect()->to('diagnosa/error');
             }
         }
 
-        
-        // Hitung berapa banyak gejala yang dipilih
         $selectedGejalaCount = count($listSelectedGejala);
-        // Hitung berapa banyak gejala yang tidak dipilih
         $unselectedGejalaCount = $gejalaModel->countAllResults() - $selectedGejalaCount;
 
         $cf = array();
@@ -138,8 +132,6 @@ class MasterDiagnosaController extends BaseController
             }
         }
 
-        /// TODO
-        // Perhitungan CF Combine
         $cfCombine = 0;
         $groupByPenyakit = array();
 
@@ -200,12 +192,9 @@ class MasterDiagnosaController extends BaseController
         $namaPenyakit = $penyakitData['nama_penyakit'];
         $deskripsi = $penyakitData['deskripsi_penyakit'];
         $solusi = $penyakitData['solusi_penyakit'];
-
-        // Simpan diagnosa dengan id_penyakit yang sesuai
         $diagnosa = $diagnosaModel->where('nama_mahasiswa', $namaLengkap)->first();
 
         if ($diagnosa) {
-    // Buat diagnosa baru dengan nilai-nilai yang sama
             $diagnosaModel->save([
                 'id_penyakit' => $idPenyakitTerbesar,
                 'nama_mahasiswa' => $namaLengkap,
@@ -317,7 +306,6 @@ class MasterDiagnosaController extends BaseController
             $idKodePenyakitArray[$item['id_penyakit']] = $item['kode_penyakit'];
         }
 
-        // Menambahkan nama_penyakit dan kode_penyakit ke dalam $data['idPenyakitArray']
         $data['idPenyakitArray'] = array_map(function ($gejala) use ($idNamaPenyakitArray, $idKodePenyakitArray) {
             return [
                 'id_penyakit' => $gejala['id_penyakit'],
@@ -348,17 +336,14 @@ class MasterDiagnosaController extends BaseController
         $diagnosaModel = new DiagnosaModel();
         $diagnosaGejalaModel = new DiagnosaGejalaModel();
 
-        // Mengambil ID diagnosa terakhir
         $lastDiagnosa = $diagnosaModel->orderBy('id_diagnosa', 'DESC')->first();
         $pasienId = $lastDiagnosa['id_diagnosa'];
 
-        // Mengambil data diagnosa berdasarkan ID diagnosa terakhir
         $laporanDiagnosa = $diagnosaModel->select('tbl_diagnosa.*, tbl_penyakit.kode_penyakit, tbl_penyakit.nama_penyakit, tbl_penyakit.deskripsi_penyakit, tbl_penyakit.solusi_penyakit')
         ->join('tbl_penyakit', 'tbl_penyakit.id_penyakit = tbl_diagnosa.id_penyakit', 'left')
         ->where('tbl_diagnosa.id_diagnosa', $pasienId)
         ->findAll();
 
-        // Mengambil ID gejala terakhir
         $lastDiagnosaGejala = $diagnosaGejalaModel->orderBy('id', 'DESC')->first();
 
         $laporanGejala = $diagnosaGejalaModel->select('tbl_diagnosa_gejala.*, tbl_gejala.kode_gejala, tbl_gejala.nama_gejala, tbl_cf_user.nama_nilai, tbl_cf_user.cf, tbl_penyakit.kode_penyakit, tbl_penyakit.nama_penyakit,')
@@ -369,39 +354,18 @@ class MasterDiagnosaController extends BaseController
         ->where('tbl_diagnosa.id_diagnosa', $pasienId)
         ->findAll();
 
-
-        // ambil file view ke sebuah variable
         $view = view('diagnosa/cetak_diagnosa', ['laporanDiagnosa' => $laporanDiagnosa, 'laporanGejala' => $laporanGejala]);
-
-        // bikin instance Dompdf new
         $dompdf = new Dompdf();
-
-        // atur konten HTML ambiran muncul ning file PDF
         $dompdf->loadHtml($view);
-
-        // atur ukuran kertas
         $dompdf->setPaper('A4', 'portrait');
-
-        // dirender dulu PDF nya
         $dompdf->render();
-
-        // nah toli ngasili isi PDF
         $pdfContent = $dompdf->output();
-
-        // atur nama file PDF pas di download
         $filename = 'Laporan-Diagnosa_' . date('d-m-Y') . '.pdf';
-
-        // bikin objek respon
         $response = service('response');
-
-        // atur tipe kontene maning karo header ambir respons
         $response->setContentType('application/pdf');
         $response->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"');
-
-        // atur isi pdf sebagai body respon, ambil rata
         $response->setBody($pdfContent);
-
-        // respone di kembalikan
+        
         return $response;
     }
 

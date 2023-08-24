@@ -59,8 +59,8 @@ class MasterGejalaController extends BaseController
 
         // Cek apakah ada kesamaan pada kode_gejala dan nama_gejala
         $existingBoth = $model->where('nama_gejala', $data['nama_gejala'])
-                                ->where('kode_gejala', $data['kode_gejala'])
-                                ->countAllResults();
+        ->where('kode_gejala', $data['kode_gejala'])
+        ->countAllResults();
 
         if ($existingBoth > 0) {
             return redirect()->to('admin/master_gejala')->withInput()->with('error', 'Kode gejala dan nama gejala sudah ada.');
@@ -68,26 +68,26 @@ class MasterGejalaController extends BaseController
 
 
         $validationRules = [
-                'kode_gejala' => [
-                    'label' => 'Kode Gejala',
-                    'rules' => 'required|regex_match[/^G\d{1,2}$/]',
-                    'errors' => [
-                        'required' => '{field} harus diisi.',
-                        'regex_match' => '{field} harus diawali dengan "G" dan diikuti oleh maksimal dua angka (contoh : G01).',
-                    ],
+            'kode_gejala' => [
+                'label' => 'Kode Gejala',
+                'rules' => 'required|regex_match[/^G\d{1,2}$/]',
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'regex_match' => '{field} harus diawali dengan "G" dan diikuti oleh maksimal dua angka (contoh : G01).',
                 ],
-                'nama_gejala' => [
-                    'label' => 'Nama Gejala',
-                    'rules' => 'required',
-                    'errors' => [
+            ],
+            'nama_gejala' => [
+                'label' => 'Nama Gejala',
+                'rules' => 'required',
+                'errors' => [
                     'required' => '{field} harus diisi.',
                 ],
             ],
         ];
 
-            if (!$this->validate($validationRules)) {
-                return redirect()->to('admin/master_gejala')->withInput()->with('errorVal', $this->validator->listErrors());
-            }
+        if (!$this->validate($validationRules)) {
+            return redirect()->to('admin/master_gejala')->withInput()->with('errorVal', $this->validator->listErrors());
+        }
 
         $model->insert($data);
 
@@ -114,10 +114,8 @@ class MasterGejalaController extends BaseController
     {
         $model = new GejalaModel();
 
-        // Ambil data gejala sebelumnya
         $existingData = $model->find($id);
 
-        // Validasi perubahan data
         if (!$existingData || !$this->isDataChanged($this->request->getPost(), $existingData)) {
             return redirect()->to('admin/master_gejala')->withInput()->with('error', 'Tidak ada perubahan data gejala.');
         }
@@ -136,7 +134,6 @@ class MasterGejalaController extends BaseController
             'nama_gejala' => $this->request->getPost('nama_gejala'),
         ];
 
-        // Cek apakah nama_gejala sudah ada sebelumnya, kecuali jika tidak ada perubahan pada nama_gejala
         if ($existingData['nama_gejala'] !== $data['nama_gejala'] && $model->where('nama_gejala', $data['nama_gejala'])->countAllResults() > 0) {
             return redirect()->to('admin/master_gejala')->withInput()->with('error', 'Nama gejala sudah ada.');
         }
@@ -146,11 +143,8 @@ class MasterGejalaController extends BaseController
         return redirect()->to('admin/master_gejala')->with('success', 'Data gejala berhasil diupdate.');
     }
 
-
-    // Fungsi untuk memeriksa perubahan data
     private function isDataChanged($newData, $existingData)
     {
-        // Bandingkan nilai-nilai dari data baru dengan data yang ada sebelumnya
         return $newData['kode_gejala'] !== $existingData['kode_gejala'] ||
         $newData['nama_gejala'] !== $existingData['nama_gejala'];
     }
@@ -161,13 +155,11 @@ class MasterGejalaController extends BaseController
         $gejalaModel = new GejalaModel();
         $aturanModel = new AturanModel();
 
-        // Periksa apakah ada aturan terkait dengan gejala yang akan dihapus
         $countAturan = $aturanModel->where('id_gejala', $id_gejala)->countAllResults();
         if ($countAturan > 0) {
             return redirect()->to('/admin/master_gejala')->with('error', 'Gejala tidak dapat dihapus karena terkait dengan aturan, Silahkan hapus aturan terlebih dahulu!');
-    }
+        }
 
-        // Hapus gejala
         $gejalaModel->delete($id_gejala);
 
         return redirect()->to('/admin/master_gejala')->with('success', 'Data gejala berhasil dihapus.');

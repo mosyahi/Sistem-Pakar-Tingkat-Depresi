@@ -16,7 +16,6 @@ class MasterAturanController extends BaseController
         $penyakitModel = new PenyakitModel();
         $gejalaModel = new GejalaModel();
 
-        // Mendapatkan data penyakit dan gejala untuk setiap aturan
         foreach ($aturanData as $key => $aturan) {
             $penyakitData = $penyakitModel->find($aturan['id_penyakit']);
             $gejalaData = $gejalaModel->find($aturan['id_gejala']);
@@ -63,13 +62,13 @@ class MasterAturanController extends BaseController
 
         // Cek apakah kombinasi kode_penyakit dan kode_gejala uwis ana
         $existingData = $aturanModel->where('id_penyakit', $data['id_penyakit'])
-                                ->where('id_gejala', $data['id_gejala'])
-                                ->first();
+        ->where('id_gejala', $data['id_gejala'])
+        ->first();
 
         if ($existingData) {
             return redirect()->to(base_url('/admin/master_aturan/new'))
-                        ->withInput()
-                        ->with('error', 'Kombinasi data aturan dari kode_penyakit dan kode_gejala sudah ada!');
+            ->withInput()
+            ->with('error', 'Kombinasi data aturan dari kode_penyakit dan kode_gejala sudah ada!');
         }
 
         $aturanModel->insert($data);
@@ -85,7 +84,7 @@ class MasterAturanController extends BaseController
         $gejalaModel = new GejalaModel();
 
         $aturanData = $aturanModel->find($id);
-    
+        
         // Mengurutkan data penyakit berdasarkan kode_penyakit
         $penyakitData = $penyakitModel->orderBy('kode_penyakit', 'ASC')->findAll();
 
@@ -120,14 +119,14 @@ class MasterAturanController extends BaseController
 
         // Cek kombinasi kode penyakit dan kode gejala agar tidak ada yang sama
         $existingCombination = $aturanModel->where('id_penyakit', $data['id_penyakit'])
-                                    ->where('id_gejala', $data['id_gejala'])
-                                    ->where('id_aturan !=', $id)
-                                    ->first();
+        ->where('id_gejala', $data['id_gejala'])
+        ->where('id_aturan !=', $id)
+        ->first();
 
         if ($existingCombination) {
-        return redirect()->to(base_url('/admin/master_aturan/edit/' . $id))
-                        ->withInput()
-                        ->with('error', 'Kombinasi data aturan dari kode_penyakit dan kode_gejala sudah ada!');
+            return redirect()->to(base_url('/admin/master_aturan/edit/' . $id))
+            ->withInput()
+            ->with('error', 'Kombinasi data aturan dari kode_penyakit dan kode_gejala sudah ada!');
         }
 
         // Cek data jika tidak ada perubahan
@@ -145,9 +144,9 @@ class MasterAturanController extends BaseController
     {
         // Bandingkan nilai-nilai dari data baru dengan data yang ada sebelumnya
         return $newData['penyakit'] !== $existingData['id_penyakit'] ||
-            $newData['gejala'] !== $existingData['id_gejala'] ||
-            $newData['mb'] !== $existingData['mb'] ||
-            $newData['md'] !== $existingData['md'];
+        $newData['gejala'] !== $existingData['id_gejala'] ||
+        $newData['mb'] !== $existingData['mb'] ||
+        $newData['md'] !== $existingData['md'];
     }
 
 

@@ -125,13 +125,13 @@ public function sendOTP($email, $otp)
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'koi020987@gmail.com';
-        $mail->Password = 'bxreoedupmdpgpwk';
+        $mail->Username = 'ISI EMAIL ANDA DISINI';
+        $mail->Password = 'ISI PASSWORD AUTHENTICATED 2 LANGKAH DISINI';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         // Recipients
-        $mail->setFrom('koi020987@gmail.com', 'Sispasi UMC');
+        $mail->setFrom('ISI EMAIL ANDA DISINI', 'Sispasi UMC');
         $mail->addAddress($email);
 
         // Content

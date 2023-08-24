@@ -10,8 +10,8 @@ class MahasiswaSeeder extends Seeder
     {
         $data = [
             [
-                'email' => 'mochsyarifhidayat24@gmail.com',
-                'nama_lengkap' => 'Moch Syarif Hidayat',
+                'email' => 'mahasiswa@gmail.com',
+                'nama_lengkap' => 'Mahasiswa 1',
                 'password' => password_hash('User.123', PASSWORD_DEFAULT)
             ]
         ];

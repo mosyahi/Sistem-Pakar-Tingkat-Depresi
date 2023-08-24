@@ -13,8 +13,8 @@ class Auth extends BaseController
     private function initializeGoogleClient()
     {
         $client = new Google_Client();
-        $client->setClientId('542006984084-beuh4okj088h75k072fgnb0h7bddrthn.apps.googleusercontent.com');
-        $client->setClientSecret('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');
+        $client->setClientId('ISI CLIDENT ID DISINI');
+        $client->setClientSecret('ISI CLIENT SECRET DISINI');
         $client->setRedirectUri(base_url('login-google/callback'));
         $client->addScope('email');
         $client->addScope('profile');
@@ -50,7 +50,6 @@ class Auth extends BaseController
         $user = $model->getUserByUsername($inputUsername);
 
         if ($user && password_verify($password, $user['password']) && $inputUsername === $user['username']) {
-            // Login sukses
             $session = session();
             $session->set([
                 'logged_in' => true,

@@ -19,7 +19,7 @@ class KritikController extends BaseController
         $message = $request->getPost("isi");
 
         // Pengaturan penerima email
-        $to = "mochsyarifhidayat24@gmail.com"; // Ganti dengan alamat email tujuan
+        $to = "ISI EMAIL PENERIMA"; 
 
         // Subjek email
         $subject = "Sispasi UMC - Pesan dari $name";
@@ -58,8 +58,8 @@ class KritikController extends BaseController
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'koi020987@gmail.com';
-        $mail->Password = 'bxreoedupmdpgpwk';
+        $mail->Username = 'ISI EMAIL ANDA DISINI';
+        $mail->Password = 'ISI PASSWORD AUTHENTICATED 2 LANGKAH DISINI';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -101,14 +101,14 @@ class KritikController extends BaseController
             // Konfigurasi SMTP untuk email balasan
             $mailBalasan->Host = 'smtp.gmail.com';
             $mailBalasan->SMTPAuth = true;
-            $mailBalasan->Username = 'koi020987@gmail.com';
-            $mailBalasan->Password = 'bxreoedupmdpgpwk';
+            $mailBalasan->Username = 'ISI EMAIL ANDA DISINI';
+            $mailBalasan->Password = 'ISI PASSWORD ANDA DISINI';
             $mailBalasan->SMTPSecure = 'tls';
             $mailBalasan->Port = 587;
 
             // Coba kirim email balasan
             try {
-                $mailBalasan->setFrom('mochsyarifhidayat24@gmail.com', 'Tim Sispasi UMC');
+                $mailBalasan->setFrom('ISI EMAIL ANDA DISINI', 'Tim Sispasi UMC');
                 $mailBalasan->addAddress($email);
                 $mailBalasan->Subject = $subjectBalasan;
                 $mailBalasan->Body = $emailMessageBalasan;

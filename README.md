@@ -5,6 +5,14 @@
 
 Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode certainty factor [Mosyahi-Dev](https://mosyahi.wordpress.com).
 
+## Framework dan Library yang digunakan
+- [Codeigniter 4](https://codeigniter.com/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- PHPMailer
+- Google Client
+- DOMPdf
+- PHPOffice
+
 ## Fitur 
 ### Halaman Utama
 - Landing Page
@@ -97,5 +105,43 @@ php spark migrate --all
 - Jika sudah silahkan buka web serve dengan alamat url yang sudah anda tentukan sebelumnya.
 - Data login admin dapat dilihat di ``app/Database/Seeds/AdminSeeder``
 
+### Hal Yang Perlu Diperhatikan
+Jika anda ingin mengaktifkan *Login With Google* anda wajib melakukan konfigurasi terhadap email yang akan anda gunakan
+- pertama, anda harus mempunyai ``Client ID`` dan ``Client Secret`` yang didapat dari [Developers Console](https://console.developers.google.com), anda bisa mencari caranya di youtube/google dll.
+- kedua, pada bagian redirect URI [Developers Console](https://console.developers.google.com) anda wajib menyertakan ``login-google/callback`` pada bagian akhir url. contoh ``http:\\sispasi-umc.com\login-google\callback``
+- ketiga, jika anda sudah mempunyai keduanya, anda buka ``app/Config/Controllers/Auth.php`` dan ubah bagian ini:
+```code
+private function initializeGoogleClient()
+    {
+        $client = new Google_Client();
+        $client->setClientId('Masukkan Client ID Disini');
+        $client->setClientSecret('Masukkan Client Secret Disini');
+        $client->setRedirectUri(base_url('login-google/callback'));
+        $client->addScope('email');
+        $client->addScope('profile');
+        return $client;
+    }
+```
+- jika anda melakukan semua itu dengan benar, maka login with google akan bisa digunakan tanpa kendala.
+
+Jika anda ingin mengaktifkan *Send Email OTP - Kritik dan Saran Email - Token Lupa Password* anda wajib melakukan konfigurasi terhadap email yang akan anda gunakan juga
+- pertama, anda harus mengkonfigurasi authenticated 2 langkah pada email yang ingin anda gunakan sebagai send OTP email dll
+- kedua, jika sudah maka anda akan diberikan password dalam bentuk acak yang nantinya kita gunakan.
+- ketiga, jika anda ingin mengkonfigurasi *Send OTP Email* maka anda buka ``app/Config/Controllers/RegisterController`` dan ubah bagian:
+```code
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'MASUKKAN EMAIL ANDA DISINI';
+        $mail->Password = 'MASUKKAN PASSWORD AUTHENTICATED 2 LANGKAH DISINI';
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        // Recipients
+        $mail->setFrom('MASUKKAN EMAIL ANDA DISINI', 'Sispasi UMC');
+        $mail->addAddress($email);
+```
+- Jika anda ingin mengkonfigurasi *Kritik dan Saran Email* maka anda buka ``app/Config/Controllers/KritikController``, dan *Send Token Reset Password* buka ``app/Config/Controllers/ResetPasswordController``
 
 

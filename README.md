@@ -53,5 +53,30 @@ Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasisw
 - Data OTP & Token Reset Password
 
 ## Dokumentasi Project
-![My Image](Screenshoot/login-user.png)![My Image](Screenshoot/login-user-success.png)
+### Halaman Diagnosa
+| Form Login | Login Success |
+| -------------- | -------------- |
+| ![My Image](Screenshoot/login-user.png) | ![My Image](Screenshoot/log-user-success.png) |
+| Form Biodata | Form Pertanyaan |
+| ![My Image](Screenshoot/biodata.png) | ![My Image](Screenshoot/pertanyaan.png) |
+| Form Pilih Gejala | Hasil Diagnosa (1) |
+| ![My Image](Screenshoot/pilih-gejala.png) | ![My Image](Screenshoot/hasil-1.png) |
+| Hasil Diagnosa (2) | Hasil Diagnosa (3) |
+| ![My Image](Screenshoot/hasil-2.png) | ![My Image](Screenshoot/hasil-3.png) |
+
+### Halaman Dashboard
+| Dashboard 1 | Laporan diagnosa (All) |
+| -------------- | -------------- |
+| ![My Image](Screenshoot/dashboard-1.png) | ![My Image](Screenshoot/aturan.png) |
+| Laporan Diagnosa All | Laporan Diagnosa Individu |
+| ![My Image](Screenshoot/dashboard-2.png) | ![My Image](Screenshoot/dashboard-3.png) |
+
+
+## Run Project
+### Persyaratan
+- [Composer](https://getcomposer.org/)
+- [XAMPP](https://www.apachefriends.org/download.html) atau sejenisnya dengan versi php 7.4++ dengan mengaktifkan ``intl`` pada ``xampp\config\php.ini`` hapus tanda `` ; ``
+
+
+
 

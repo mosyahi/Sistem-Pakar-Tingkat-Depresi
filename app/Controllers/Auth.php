@@ -71,23 +71,49 @@ class Auth extends BaseController
         $inputEmail = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
+        $failedAttempts = session()->get('failed_attempts') ?? 0;
+
+        if ($failedAttempts >= 3) {
+            $lastFailedAttempt = session()->get('last_failed_attempt') ?? 0;
+            $currentTime = time();
+
+            if ($currentTime - $lastFailedAttempt < 180) {
+                $remainingTime = 180 - ($currentTime - $lastFailedAttempt);
+                return redirect()->to('login-mahasiswa')->withInput()->with('remainingTime', $remainingTime);
+            }
+        }
+
         $mahasiswa = $model->getUserByEmail($inputEmail);
 
-        if ($mahasiswa && password_verify($password, $mahasiswa['password']) && $inputEmail === $mahasiswa['email']) {
+        if ($mahasiswa) {
+            if (password_verify($password, $mahasiswa['password'])) {
+                session()->remove('failed_attempts');
+                session()->remove('last_failed_attempt');
 
-            // Login sukses
-            $session = session();
-            $session->set([
-                'login_diagnosa' => true,
-                'mahasiswa_id' => $mahasiswa['id_mahasiswa'],
-                'email' => $mahasiswa['email'],
-                'nama_lengkap' => $mahasiswa['nama_lengkap']
-            ]);
+                $session = session();
+                $session->set([
+                    'login_diagnosa' => true,
+                    'mahasiswa_id' => $mahasiswa['id_mahasiswa'],
+                    'email' => $mahasiswa['email'],
+                    'nama_lengkap' => $mahasiswa['nama_lengkap']
+                ]);
 
-            $alertMessage = "Selamat datang, " . $mahasiswa['nama_lengkap'] . "!";
-            return redirect()->to('mahasiswa/cek_diagnosa')->with('logSuccess', $alertMessage);
+                $alertMessage = "Selamat datang, " . $mahasiswa['nama_lengkap'] . "!";
+                return redirect()->to('mahasiswa/cek_diagnosa')->with('logSuccess', $alertMessage);
+            } else {
+                $failedAttempts++;
+                session()->set('failed_attempts', $failedAttempts);
+                session()->set('last_failed_attempt', time());
+
+                if ($failedAttempts === 1 || $failedAttempts === 2) {
+                    return redirect()->to('login-mahasiswa')->withInput()->with('error', 'Email atau password salah');
+                } elseif ($failedAttempts >= 3) {
+                    $remainingTime = 180;
+                    return redirect()->to('login-mahasiswa')->withInput()->with('remainingTime', $remainingTime);
+                }
+            }
         } else {
-            return redirect()->back()->withInput()->with('error', 'Email atau password salah');
+            return redirect()->to('login-mahasiswa')->withInput()->with('error', 'Email tidak terdaftar');
         }
     }
 

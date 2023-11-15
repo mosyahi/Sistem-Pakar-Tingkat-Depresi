@@ -4,6 +4,7 @@
 ## Apa itu Sispasi UMC?
 
 Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode *certainty factor.*
+[Demo Aplikasi](https://sispasiumc.000webhostapp.com/)
 
 ## Framework dan Library yang digunakan
 - [Codeigniter 4](https://codeigniter.com/)

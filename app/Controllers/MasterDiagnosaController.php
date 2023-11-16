@@ -73,7 +73,6 @@ class MasterDiagnosaController extends BaseController
         $unselectedGejalaCount = $gejalaModel->countAllResults() - $selectedGejalaCount;
 
         $cf = array();
-        $listGejala = array();
         $penyakitCodes = array();
         $penyakitNames = array();
 
@@ -103,7 +102,6 @@ class MasterDiagnosaController extends BaseController
                     // $value['kode_gejala'] = $gejala['kode_gejala'];
                     $value['nama_gejala'] = $gejalaRule['nama_gejala'];
                     $value['tingkat_kepercayaan'] = $val['tingkat_kepercayaan'];
-                    $value['cf_user'] = $val['cf_user'];
                     $value['cf'] = $relation[$r]['cf'];
                     $value['nilai_cf'] = 0;
                     $value['id_penyakit'] = 0;
@@ -143,7 +141,7 @@ class MasterDiagnosaController extends BaseController
 
         if (count($cf) > 1) {
             for ($i = 0; $i < count($cf) - 1; $i++) {
-                $depresi = $groupByPenyakit[$cf[$i]['id_penyakit']];
+                $depresi = $groupByPenyakit[$cf['id_penyakit']];
 
                 if (count($depresi) > 1) {
                     for ($j = 0; $j < count($depresi); $j++) {
@@ -159,7 +157,6 @@ class MasterDiagnosaController extends BaseController
                             }
                         } else {
                             if ($j + 1 == count($depresi)) {
-                                $new[$i]["nilai_cf"] = $cfCombine;
                                 $new[$i]["id_penyakit"] = $cf[$i]['id_penyakit'];
                                 break;
                             }
@@ -173,17 +170,17 @@ class MasterDiagnosaController extends BaseController
                 }
             }
         } else {
-            $cfCombine = $cf[0]['nilai_cf'];
-            $new[0]["nilai_cf"] = $cfCombine;
+            $cfCombine = $cf['nilai_cf'];
+            $new["nilai_cf"] = $cfCombine;
             $new[0]["id_penyakit"] = $cf[0]['id_penyakit'];
         }
 
-        for ($i = 0; $i < (count($new) - count($cf)); $i++) {
+        for ($i = $i < (count($new) - count($cf)); $i++) {
             unset($new[$i]);
         }
 
 
-        $nilaiPenyakitTerbesar = max($new)['nilai_cf'];
+        $nilaiPenyakitTerbesar = max($cf)['nilai_cf'];
         $idPenyakitTerbesar = max($new)['id_penyakit'];
 
         // Ambil deskripsi dan solusi penyakit
@@ -239,7 +236,7 @@ class MasterDiagnosaController extends BaseController
 
             if ($cfMahasiswa) {
                 $id_penyakit = $val['id_penyakit'];
-                $nilai_cf = 0;
+                $nilai_cf = '';
 
                 foreach ($new as $item) {
                     if ($item['id_penyakit'] == $id_penyakit) {

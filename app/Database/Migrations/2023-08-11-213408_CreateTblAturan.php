@@ -31,9 +31,6 @@ class CreateTblAturan extends Migration
             'md' => [
                 'type' => 'FLOAT',
             ],
-            'cf' => [
-                'type' => 'FLOAT',
-            ],
         ]);
 
         $this->forge->addPrimaryKey('id_aturan');

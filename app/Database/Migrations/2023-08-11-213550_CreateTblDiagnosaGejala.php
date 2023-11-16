@@ -38,9 +38,6 @@ class CreateTblDiagnosaGejala extends Migration
             'cf_hasil' => [
                 'type' => 'FLOAT',
             ],
-            'cf_pakar' => [
-                'type' => 'FLOAT',
-            ],
         ]);
 
         $this->forge->addKey('id', true);

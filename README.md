@@ -3,11 +3,12 @@
 
 ## Apa itu Sispasi UMC?
 
-Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode *certainty factor. Untuk link demo silahkan klik [Demo Aplikasi](https://sispasiumc.000webhostapp.com/). Demo app tersebut mungkin akan membutuhkan waktu yang agak lama saat dibuka karena menggunakan hosting gratis, dan fitur login with google tidak di masukkan kedalam demo tersebut dikarenakan library google client terlalu besar sehingga storage hosting tidak cukup.
+Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode *certainty factor. Untuk link demo silahkan klik [Demo Aplikasi](https://sispasi.mosyahizuku.site/). Demo app tersebut mungkin akan membutuhkan waktu yang agak lama saat dibuka karena menggunakan hosting gratis, dan fitur login with google tidak di masukkan kedalam demo tersebut dikarenakan library google client terlalu besar sehingga storage hosting tidak cukup.
 
 #### Dilarang keras clone tanpa izin, NOT FREE :)
 * Copyright 2023 Mosyahizuku.
 * Contact Person [Website Mosyahizuku](https://mosyahizuku.site) Or [Whatsapp](https://wa.me/628988658838)
+* [Link Demo Aplikasi](https://sispasi.mosyahizuku.site/)
 
 ## Framework dan Library yang digunakan
 - [Codeigniter 4](https://codeigniter.com/)
@@ -158,6 +159,7 @@ Jangan lupa star yaa.....
 ## License
 Copyright © 2023 Mosyahi-Dev.
 * Dilarang keras clone tanpa izin. cp [Mosyahizuku](https://mosyahizuku.site) Or [Whatsapp](https://wa.me/628988658838)
+* [Link Demo Aplikasi](https://sispasi.mosyahizuku.site/)
 
 ## Authors
 [Mosyahi-Dev](https://instagram.com/mochsyarifhidayat13)

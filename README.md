@@ -156,6 +156,7 @@ Jangan lupa star yaa.....
 
 ## License
 Copyright © 2023 Mosyahi-Dev.
+* Dilarang keras clone tanpa izin. cp [Mosyahizuku](https://mosyahizuku.site) Or [Whatsapp](wa.me/628988658838)
 
 ## Authors
 [Mosyahi-Dev](https://instagram.com/mochsyarifhidayat13)

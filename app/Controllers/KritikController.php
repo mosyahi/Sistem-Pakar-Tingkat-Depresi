@@ -19,7 +19,7 @@ class KritikController extends BaseController
         $message = $request->getPost("isi");
 
         // Pengaturan penerima email
-        $to = "mosyahichannel@gmail.com"; // Ganti dengan alamat email tujuan
+        $to = "example@gmail.com"; // Ganti dengan alamat email tujuan
 
         // Subjek email
         $subject = "Sispasi UMC - Pesan dari $name";
@@ -58,8 +58,8 @@ class KritikController extends BaseController
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'mosyahizuku@gmail.com';
-        $mail->Password = 'yuvjnlfedivbzkyt';
+        $mail->Username = 'example2@gmail.com';
+        $mail->Password = '************';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -101,8 +101,8 @@ class KritikController extends BaseController
             // Konfigurasi SMTP untuk email balasan
             $mailBalasan->Host = 'smtp.gmail.com';
             $mailBalasan->SMTPAuth = true;
-            $mailBalasan->Username = 'mosyahizuku@gmail.com';
-            $mailBalasan->Password = 'yuvjnlfedivbzkyt';
+            $mailBalasan->Username = 'example2@gmail.com';
+            $mailBalasan->Password = '************';
             $mailBalasan->SMTPSecure = 'tls';
             $mailBalasan->Port = 587;
 

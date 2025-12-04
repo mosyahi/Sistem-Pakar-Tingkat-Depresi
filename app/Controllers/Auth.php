@@ -13,8 +13,8 @@ class Auth extends BaseController
     private function initializeGoogleClient()
     {
         $client = new Google_Client();
-        $client->setClientId('549990753424-lrpjdomossotofa725hi7qoer9d4cu1f.apps.googleusercontent.com');
-        $client->setClientSecret('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');
+        $client->setClientId('************************');
+        $client->setClientSecret('*********************');
         $client->setRedirectUri(base_url('login-google/callback'));
         $client->addScope('email');
         $client->addScope('profile');

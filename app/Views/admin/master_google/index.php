@@ -1,0 +1,108 @@
+<?= $this->extend('layout/app') ?>
+<?= $this->section('content') ?>
+<?= $this->include('components/alerts') ?>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <div class="btn-group float-right">
+            <button type="button" class="btn btn-primary btn-sm mx-2 dropdown-toggle" data-toggle="dropdown"
+            aria-expanded="false"><i class="fas fa-cog"></i>&nbsp Aksi
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="<?= base_url('register') ?>"><i
+                class="fas fa-plus" style="color: #3643b5;"></i>&nbsp Tambah Google</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#konfirmasiTruncate"><i
+                    class="fas fa-trash" style="color: #fc2f2f;"></i>&nbsp Hapus Semua Data</a>
+                </div>
+            </div>
+            <h5 class="m-0 font-weight-bold text-primary m-2">
+                <font color="#8B0000">Data Google</font>
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Google ID</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $counter = 1; ?>
+                        <?php foreach ($dataGoogle as $item) : ?>
+                            <tr>
+                                <td><?= $counter++ ?></td>
+                                <td><?= $item['name'] ?></td>
+                                <td><?= $item['email'] ?></td>
+                                <td class="text-center">
+                                    <span class="google-placeholder"></span>
+                                    <button class="btn-show-google btn-primary btn-sm btn-circle" data-google="<?= $item['google_id'] ?>"><i class="fas fa-eye"></i></button>
+                                </td>
+                                <td><?= $item['created_at'] ?></td>
+                                <td><?= $item['updated_at'] ?></td>
+                                <td class="text-center">
+                                    <form action="<?= base_url('admin/master_google/'.$item['id']) ?>" method="post" class="inline-block">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="d-none d-sm-inline-block btn btn-circle btn-sm btn-danger shadow-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Truncate Data -->
+    <div class="modal fade" id="konfirmasiTruncate" tabindex="-1" role="dialog" aria-labelledby="confirmTruncateModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmTruncateModalLabel">Konfirmasi Truncate Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus seluruh data? Data akan dihapus secara permanen dari database.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <a href="<?= base_url('admin/master_google/truncateDataGoogle') ?>" class="btn btn-danger">Hapus Data</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const showGoogleButtons = document.querySelectorAll(".btn-show-google");
+
+        showGoogleButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const googlePlaceholder = this.parentNode.querySelector(".google-placeholder");
+                const googleValue = this.getAttribute("data-google");
+                
+                if (googlePlaceholder.textContent === googleValue) {
+                    googlePlaceholder.textContent = ""; // Sembunyikan google saat tombol diklik
+                } else {
+                    googlePlaceholder.textContent = googleValue; // Tampilkan google saat tombol diklik
+                }
+            });
+        });
+    });
+</script>
+
+<?= $this->endSection() ?>

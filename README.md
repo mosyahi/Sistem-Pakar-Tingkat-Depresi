@@ -5,7 +5,7 @@
 
 Sispasi UMC adalah sistem pakar untuk mendiagnosis tingkat depresi pada mahasiswa tingkat akhir dengan menggunakan metode *certainty factor. Untuk link demo silahkan klik [Demo Aplikasi](https://sispasi.mochsyarifhidayat.my.id/). Demo app tersebut mungkin akan membutuhkan waktu yang agak lama saat dibuka karena menggunakan hosting gratis, dan fitur login with google tidak di masukkan kedalam demo tersebut dikarenakan library google client terlalu besar sehingga storage hosting tidak cukup.
 
-#### NOT FREE :)
+#### ENJOYY
 * Copyright 2023 Mosyahizuku.
 * Contact Person [Website Mosyahizuku](https://mochsyarifhidayat.my.id) Or [Whatsapp](https://wa.me/628988658838)
 * [Link Demo Aplikasi](https://sispasi.mochsyarifhidayat.my.id/)

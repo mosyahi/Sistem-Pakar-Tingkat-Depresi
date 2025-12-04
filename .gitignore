@@ -1,0 +1,74 @@
+# ========================================
+# Sistem & Dependency
+# ========================================
+/vendor/
+/node_modules/
+
+# Composer
+composer.phar
+composer.lock
+
+# NPM/Yarn
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ========================================
+# CodeIgniter 4
+# ========================================
+/writable/*
+!/writable/index.html
+!/writable/.gitkeep
+
+# Jika ada subfolder penting yang ingin tetap ada di repo, tambahkan:
+# !/writable/logs/
+# !/writable/cache/
+# !/writable/uploads/
+
+# File environment
+.env
+/.public/*
+
+# ========================================
+# IDE / Editor
+# ========================================
+
+# VSCode
+.vscode/
+.history/
+
+# PhpStorm / IntelliJ
+.idea/
+
+# NetBeans
+nbproject/
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ========================================
+# Sistem Operasi
+# ========================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ========================================
+# Lain-lain
+# ========================================
+/bootstrap/cache/*
+!.gitignore
+
+# Log & cache umum
+*.log
+.cache/
+phpunit.xml
+phpunit.xml.dist
+.phpunit.result.cache
